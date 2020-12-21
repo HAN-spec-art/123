@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="" id="" value="" placeholder="请输入关键词"/>
+		<input type="button" name="" id="" value="搜索" class="button"/>
+		<p></p>
+	</body>
+	<script src="js/3.4-jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/runner.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+
+			runner(function *(){
+				let data=yield $.ajax({url:"js/index.json",dataType:"json"});
+                console.log(data);
+				$('.button').click(function(){
+					for(let i=0;i<data.tit.length;i++){
+						let $inp=$('input').val()
+                        let gen=data.tit[i].title
+                        if(gen.indexOf($inp)!=-1){
+						    $("p").append(gen+"<br/>");
+					    }
+					}
+					
+				})
+			})
+	</script>
+</html>
